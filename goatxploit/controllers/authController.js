@@ -15,7 +15,9 @@ export async function register(req, res) {
       return res.redirect('/register');
     }
 
-    if (!/^\S+@\S+\.\S+$/.test(email)) {
+    const emailParts = String(email).split('@');
+    const isValidEmail = emailParts.length === 2 && emailParts[0] && emailParts[1]?.includes('.');
+    if (!isValidEmail) {
       req.session.flash = { type: 'error', message: 'Format email tidak valid.' };
       return res.redirect('/register');
     }
