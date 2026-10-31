@@ -1,0 +1,17 @@
+<div class="grid md:grid-cols-2 gap-4">
+  <form method="POST" action="/profile" class="bg-white border border-slate-200 rounded-md p-6 space-y-3">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <h2 class="font-semibold">Edit Profil</h2>
+    <input name="username" value="<%= user.username %>" class="w-full border border-slate-200 rounded-md px-3 py-2" required />
+    <input value="<%= user.email %>" disabled class="w-full border border-slate-200 rounded-md px-3 py-2 bg-slate-100" />
+    <p class="text-sm text-slate-500">Saldo: <strong><%= user.balance %> credit</strong></p>
+    <button class="bg-green-700 text-white px-4 py-2 rounded-md">Simpan</button>
+  </form>
+  <form method="POST" action="/profile/password" class="bg-white border border-slate-200 rounded-md p-6 space-y-3">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <h2 class="font-semibold">Ganti Password</h2>
+    <input type="password" name="password" minlength="6" placeholder="Password baru" class="w-full border border-slate-200 rounded-md px-3 py-2" required />
+    <input type="password" name="confirmPassword" minlength="6" placeholder="Konfirmasi password" class="w-full border border-slate-200 rounded-md px-3 py-2" required />
+    <button class="bg-slate-900 text-white px-4 py-2 rounded-md">Update Password</button>
+  </form>
+</div>

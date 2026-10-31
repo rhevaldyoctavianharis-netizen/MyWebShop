@@ -1,0 +1,20 @@
+<div class="md:flex gap-4">
+  <%- include('../../partials/admin-sidebar') %>
+  <form method="POST" enctype="multipart/form-data" action="<%= product ? '/admin/products/' + product.id : '/admin/products' %>" class="flex-1 bg-white border border-slate-200 rounded-md p-6 space-y-3">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <h1 class="text-xl font-semibold"><%= product ? 'Edit Produk' : 'Tambah Produk' %></h1>
+    <input name="name" value="<%= product?.name || '' %>" placeholder="Nama" required class="w-full border border-slate-200 rounded-md px-3 py-2" />
+    <textarea name="description" required class="w-full border border-slate-200 rounded-md px-3 py-2" rows="5" placeholder="Deskripsi"><%= product?.description || '' %></textarea>
+    <div class="grid md:grid-cols-2 gap-3">
+      <input type="number" name="price" value="<%= product?.price || '' %>" placeholder="Harga credit" required class="w-full border border-slate-200 rounded-md px-3 py-2" />
+      <input type="number" name="stock" value="<%= product?.stock || '' %>" placeholder="Stok" required class="w-full border border-slate-200 rounded-md px-3 py-2" />
+    </div>
+    <select name="categoryId" required class="w-full border border-slate-200 rounded-md px-3 py-2">
+      <% categories.forEach((cat) => { %><option value="<%= cat.id %>" <%= product && String(product.categoryId) === String(cat.id) ? 'selected' : '' %>><%= cat.name %></option><% }) %>
+    </select>
+    <input name="fileUrl" value="<%= product?.fileUrl || '' %>" placeholder="File URL deliverable (opsional)" class="w-full border border-slate-200 rounded-md px-3 py-2" />
+    <input type="file" name="thumbnail" accept="image/png,image/jpeg" class="w-full border border-slate-200 rounded-md px-3 py-2" />
+    <% if (product) { %><label class="flex items-center gap-2 text-sm"><input type="checkbox" name="isActive" <%= product.isActive ? 'checked' : '' %> /> Aktif</label><% } %>
+    <button class="bg-green-700 text-white px-4 py-2 rounded-md">Simpan</button>
+  </form>
+</div>

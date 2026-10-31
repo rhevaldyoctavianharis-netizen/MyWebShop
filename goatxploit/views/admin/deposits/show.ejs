@@ -1,0 +1,22 @@
+<div class="md:flex gap-4">
+  <%- include('../../partials/admin-sidebar') %>
+  <div class="flex-1 bg-white border border-slate-200 rounded-md p-6">
+    <h1 class="text-xl font-semibold mb-3">Deposit #<%= deposit.id %></h1>
+    <div class="space-y-1 text-sm mb-4">
+      <p>User: <%= deposit.User.email %></p><p>Amount: <%= deposit.amount %> credit</p><p>Method: <%= deposit.method %></p><p>Status: <%= deposit.status %></p>
+      <p>Bukti: <a class="text-green-700" href="<%= deposit.proofUrl %>" target="_blank">Lihat file</a></p>
+    </div>
+    <% if (deposit.status === 'PENDING') { %>
+      <form method="POST" action="/admin/deposits/<%= deposit.id %>/approve" class="mb-3 space-y-2">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <textarea name="note" class="w-full border border-slate-200 rounded-md px-3 py-2" placeholder="Catatan approve"></textarea>
+        <button class="bg-green-700 text-white px-4 py-2 rounded-md">Approve</button>
+      </form>
+      <form method="POST" action="/admin/deposits/<%= deposit.id %>/reject" class="space-y-2">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <textarea name="note" class="w-full border border-slate-200 rounded-md px-3 py-2" placeholder="Alasan reject"></textarea>
+        <button class="bg-red-600 text-white px-4 py-2 rounded-md">Reject</button>
+      </form>
+    <% } %>
+  </div>
+</div>

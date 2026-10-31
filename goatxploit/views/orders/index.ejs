@@ -1,0 +1,21 @@
+<h1 class="text-2xl font-semibold mb-4">Riwayat Order</h1>
+<% orders.forEach((order) => { %>
+  <div class="bg-white border border-slate-200 rounded-md p-4 mb-4">
+    <div class="flex justify-between mb-2 text-sm"><span>Order #<%= order.id %></span><span>Total <%= order.totalAmount %> credit</span></div>
+    <table class="w-full text-sm border border-slate-200 rounded-md overflow-hidden">
+      <thead class="bg-slate-100"><tr><th class="p-2 text-left">Produk</th><th class="p-2 text-left">Harga</th><th class="p-2 text-left">License</th><th class="p-2 text-left">Download</th></tr></thead>
+      <tbody>
+        <% order.OrderItems.forEach((item) => { %>
+          <tr class="border-t border-slate-200">
+            <td class="p-2"><%= item.Product?.name || '-' %></td>
+            <td class="p-2"><%= item.price %></td>
+            <td class="p-2 font-mono"><%= item.licenseKey %></td>
+            <td class="p-2">
+              <% if (item.Product?.fileUrl) { %><a class="text-green-700" href="<%= item.Product.fileUrl %>" target="_blank">Download</a><% } else { %>-<% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% }) %>

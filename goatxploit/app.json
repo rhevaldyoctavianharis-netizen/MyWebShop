@@ -1,0 +1,41 @@
+{
+  "name": "GoatXploit",
+  "description": "Simple marketplace for premium digital goods",
+  "repository": "https://github.com/rhevaldyoctavianharis-netizen/MyWebShop",
+  "logo": "https://raw.githubusercontent.com/heroku/node-js-getting-started/main/public/node.svg",
+  "keywords": ["node", "express", "sequelize", "marketplace", "digital goods"],
+  "env": {
+    "SESSION_SECRET": {
+      "generator": "secret"
+    },
+    "ADMIN_EMAIL": {
+      "value": "admin@goatxploit.com"
+    },
+    "ADMIN_PASSWORD": {
+      "value": "Admin123!"
+    },
+    "BANK_ACCOUNT": {
+      "value": "BCA 1234567890 a/n GoatXploit"
+    },
+    "DANA_NUMBER": {
+      "value": "081234567890"
+    },
+    "QRIS_IMAGE_URL": {
+      "value": "https://example.com/qris.png"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:essential-0"
+    }
+  ],
+  "scripts": {
+    "postdeploy": "npm run db:migrate && npm run db:seed"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  }
+}

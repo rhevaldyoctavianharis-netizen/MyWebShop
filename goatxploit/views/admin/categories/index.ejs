@@ -1,0 +1,19 @@
+<div class="md:flex gap-4">
+  <%- include('../../partials/admin-sidebar') %>
+  <div class="flex-1">
+    <h1 class="text-2xl font-semibold mb-4">Kategori</h1>
+    <form method="POST" action="/admin/categories" class="bg-white border border-slate-200 rounded-md p-4 mb-4 flex gap-2">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <input name="name" placeholder="Nama kategori" class="flex-1 border border-slate-200 rounded-md px-3 py-2" required />
+      <button class="bg-green-700 text-white px-4 py-2 rounded-md">Tambah</button>
+    </form>
+    <table class="w-full bg-white border border-slate-200 rounded-md text-sm">
+      <thead class="bg-slate-100"><tr><th class="p-3 text-left">Nama</th><th class="p-3 text-left">Slug</th><th class="p-3"></th></tr></thead>
+      <tbody>
+      <% categories.forEach((cat) => { %>
+      <tr class="border-t border-slate-200"><td class="p-3"><%= cat.name %></td><td class="p-3"><%= cat.slug %></td><td class="p-3 text-right"><form method="POST" action="/admin/categories/<%= cat.id %>/delete" class="inline"><input type="hidden" name="_csrf" value="<%= csrfToken %>"><button class="text-red-600">Delete</button></form></td></tr>
+      <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>

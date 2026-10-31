@@ -1,0 +1,15 @@
+<div class="bg-white border border-slate-200 rounded-md p-6">
+  <h1 class="text-2xl font-semibold"><%= product.name %></h1>
+  <p class="text-slate-500 mt-1">Kategori: <%= product.Category?.name || '-' %></p>
+  <p class="mt-4 whitespace-pre-line"><%= product.description %></p>
+  <div class="mt-6 flex items-center justify-between">
+    <div>
+      <div class="text-lg font-semibold text-green-700"><%= product.price %> credit</div>
+      <div class="text-sm text-slate-500">Stok: <%= product.stock %></div>
+    </div>
+    <form method="POST" action="/products/<%= product.id %>/buy">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <button class="bg-green-700 text-white px-4 py-2 rounded-md">Beli dengan Credit</button>
+    </form>
+  </div>
+</div>

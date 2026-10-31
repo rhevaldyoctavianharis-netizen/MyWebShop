@@ -1,0 +1,24 @@
+<div class="md:flex gap-4">
+  <%- include('../partials/admin-sidebar') %>
+  <div class="flex-1">
+    <h1 class="text-2xl font-semibold mb-4">Dashboard Admin</h1>
+    <div class="grid md:grid-cols-5 gap-3 mb-4">
+      <div class="bg-white border border-slate-200 rounded-md p-4"><p class="text-sm text-slate-500">Users</p><p class="text-xl font-semibold"><%= stats.totalUsers %></p></div>
+      <div class="bg-white border border-slate-200 rounded-md p-4"><p class="text-sm text-slate-500">Produk</p><p class="text-xl font-semibold"><%= stats.totalProducts %></p></div>
+      <div class="bg-white border border-slate-200 rounded-md p-4"><p class="text-sm text-slate-500">Order</p><p class="text-xl font-semibold"><%= stats.totalOrders %></p></div>
+      <div class="bg-white border border-slate-200 rounded-md p-4"><p class="text-sm text-slate-500">Revenue</p><p class="text-xl font-semibold"><%= stats.revenue %></p></div>
+      <div class="bg-white border border-slate-200 rounded-md p-4"><p class="text-sm text-slate-500">Pending Deposit</p><p class="text-xl font-semibold"><%= stats.pendingDeposits %></p></div>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-md p-4">
+      <h2 class="font-semibold mb-3">Pendapatan 7 hari terakhir</h2>
+      <canvas id="revenueChart" height="100"></canvas>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const labels = <%- JSON.stringify(chartData.map((d) => d.day)) %>;
+  const values = <%- JSON.stringify(chartData.map((d) => Number(d.total))) %>;
+  const ctx = document.getElementById('revenueChart');
+  if (ctx) new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Revenue', data: values, borderColor: '#166534' }] } });
+</script>
