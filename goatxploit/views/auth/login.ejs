@@ -1,0 +1,16 @@
+<div class="max-w-md mx-auto bg-white border border-slate-200 rounded-md p-6">
+  <h1 class="text-xl font-semibold mb-4">Login</h1>
+  <form method="POST" action="/login" class="space-y-4">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <div>
+      <label class="block text-sm mb-1">Email / Username</label>
+      <input name="identifier" required class="w-full border border-slate-200 rounded-md px-3 py-2" />
+    </div>
+    <div>
+      <label class="block text-sm mb-1">Password</label>
+      <input name="password" type="password" required class="w-full border border-slate-200 rounded-md px-3 py-2" />
+    </div>
+    <button class="bg-green-700 text-white px-4 py-2 rounded-md">Login</button>
+  </form>
+  <p class="text-sm mt-3">Belum punya akun? <a href="/register" class="text-green-700">Daftar</a></p>
+</div>

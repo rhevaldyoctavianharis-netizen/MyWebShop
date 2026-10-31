@@ -1,0 +1,24 @@
+<div class="md:flex gap-4">
+  <%- include('../../partials/admin-sidebar') %>
+  <div class="flex-1">
+    <h1 class="text-2xl font-semibold mb-4">Semua Order</h1>
+    <table class="w-full bg-white border border-slate-200 rounded-md text-sm">
+      <thead class="bg-slate-100"><tr><th class="p-3 text-left">Order</th><th class="p-3 text-left">User</th><th class="p-3 text-left">Total</th><th class="p-3 text-left">Status</th><th class="p-3 text-left">Items</th></tr></thead>
+      <tbody>
+        <% orders.forEach((o) => { %>
+          <tr class="border-t border-slate-200 align-top">
+            <td class="p-3">#<%= o.id %></td>
+            <td class="p-3"><%= o.User?.email %></td>
+            <td class="p-3"><%= o.totalAmount %></td>
+            <td class="p-3"><%= o.status %></td>
+            <td class="p-3">
+              <% o.OrderItems.forEach((item) => { %>
+                <div><%= item.Product?.name %> - <span class="font-mono"><%= item.licenseKey %></span></div>
+              <% }) %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<h1 class="text-2xl font-semibold mb-4">Produk Digital</h1>
+<form method="GET" class="bg-white border border-slate-200 rounded-md p-4 mb-4 grid md:grid-cols-3 gap-3">
+  <input name="q" value="<%= filters.q %>" placeholder="Cari produk" class="border border-slate-200 rounded-md px-3 py-2" />
+  <select name="category" class="border border-slate-200 rounded-md px-3 py-2">
+    <option value="">Semua Kategori</option>
+    <% categories.forEach((cat) => { %>
+      <option value="<%= cat.id %>" <%= String(filters.category) === String(cat.id) ? 'selected' : '' %>><%= cat.name %></option>
+    <% }) %>
+  </select>
+  <button class="bg-slate-900 text-white px-4 py-2 rounded-md">Filter</button>
+</form>
+<table class="w-full bg-white border border-slate-200 rounded-md overflow-hidden text-sm">
+  <thead class="bg-slate-100">
+    <tr>
+      <th class="p-3 text-left">Produk</th><th class="p-3 text-left">Kategori</th><th class="p-3 text-left">Harga</th><th class="p-3 text-left">Stok</th><th class="p-3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% products.forEach((product) => { %>
+      <tr class="border-t border-slate-200 hover:bg-slate-50">
+        <td class="p-3"><div class="font-medium"><%= product.name %></div><div class="text-slate-500 line-clamp-1"><%= product.description.slice(0, 80) %></div></td>
+        <td class="p-3"><%= product.Category?.name || '-' %></td>
+        <td class="p-3"><%= product.price %> credit</td>
+        <td class="p-3"><%= product.stock %></td>
+        <td class="p-3 text-right"><a class="text-green-700" href="/products/<%= product.slug %>">Detail</a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

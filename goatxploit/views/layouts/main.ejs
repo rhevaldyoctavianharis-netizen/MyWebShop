@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title ? `${title} - GoatXploit` : 'GoatXploit' %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/public/css/custom.css" />
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+  <%- include('../partials/navbar') %>
+  <main class="max-w-6xl mx-auto w-full px-4 py-6 flex-1">
+    <%- include('../partials/flash') %>
+    <%- body %>
+  </main>
+  <%- include('../partials/footer') %>
+  <script src="/public/js/admin.js"></script>
+</body>
+</html>
